@@ -1,0 +1,139 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": true,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 3,
+        "image_ratio": "portrait",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": true,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 100,
+        "padding_bottom": 40
+      }
+    },
+    "c57fb9e9-b20e-4ef6-9144-7c2a10b4e950": {
+      "type": "collection-list",
+      "blocks": {
+        "template--16613129289956__c57fb9e9-b20e-4ef6-9144-7c2a10b4e950-1667644996e117a953-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bagpacks"
+          }
+        },
+        "template--16613129289956__c57fb9e9-b20e-4ef6-9144-7c2a10b4e950-1667644996e117a953-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "black-headphone"
+          }
+        },
+        "template--16613129289956__c57fb9e9-b20e-4ef6-9144-7c2a10b4e950-1667644996e117a953-2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "yuva"
+          }
+        },
+        "5306c932-a74b-4584-a760-979f4f3473ac": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "supper-bottle"
+          }
+        },
+        "a9bc3dd9-905c-4cd8-9a9e-1bc3a680e6e1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "t-shirts"
+          }
+        },
+        "2717e586-6fcd-4e6a-a12b-25594bbf1ab2": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "diwali-collection"
+          }
+        }
+      },
+      "block_order": [
+        "template--16613129289956__c57fb9e9-b20e-4ef6-9144-7c2a10b4e950-1667644996e117a953-0",
+        "template--16613129289956__c57fb9e9-b20e-4ef6-9144-7c2a10b4e950-1667644996e117a953-1",
+        "template--16613129289956__c57fb9e9-b20e-4ef6-9144-7c2a10b4e950-1667644996e117a953-2",
+        "5306c932-a74b-4584-a760-979f4f3473ac",
+        "a9bc3dd9-905c-4cd8-9a9e-1bc3a680e6e1",
+        "2717e586-6fcd-4e6a-a12b-25594bbf1ab2"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "color_scheme": "background-2",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "6e9bda00-dc1d-4f56-8ba6-689062da8ed2": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16613129289956__6e9bda00-dc1d-4f56-8ba6-689062da8ed2-166788550383376d33-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Here at YUVA we...<\/p>",
+            "heading_size": "h1"
+          }
+        },
+        "template--16613129289956__6e9bda00-dc1d-4f56-8ba6-689062da8ed2-166788550383376d33-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Shopping for clothing online can seem overwhelming to more people than one might think. But <strong>YUVA<\/strong> does everything possible to guarantee you a smooth shopping experience. Do not forget to use the platform's <strong>30-day return policy<\/strong>, quick delivery feature, cash on delivery facility, and more. <\/p>"
+          }
+        },
+        "template--16613129289956__6e9bda00-dc1d-4f56-8ba6-689062da8ed2-166788550383376d33-2": {
+          "type": "button",
+          "settings": {
+            "button_label": "",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--16613129289956__6e9bda00-dc1d-4f56-8ba6-689062da8ed2-166788550383376d33-0",
+        "template--16613129289956__6e9bda00-dc1d-4f56-8ba6-689062da8ed2-166788550383376d33-1",
+        "template--16613129289956__6e9bda00-dc1d-4f56-8ba6-689062da8ed2-166788550383376d33-2"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "c57fb9e9-b20e-4ef6-9144-7c2a10b4e950",
+    "6e9bda00-dc1d-4f56-8ba6-689062da8ed2"
+  ]
+}

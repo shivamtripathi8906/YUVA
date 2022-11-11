@@ -1,0 +1,140 @@
+<product-card class="product-card" data-handle={{ product.handle }}>
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+  {%- assign form_id = 'Form-' | append: section.id | append: product.id -%}
+
+  <a href="{{ product.url }}" class="product-card__link">
+    <div class="product-card__image media media--square">
+      <img src="{{ featured_image | image_url: width: 750 }}"
+        loading="lazy"
+        srcset="{%- if featured_image.width >= 375 -%}{{ featured_image | image_url: width: 375 }} 375w,{%- endif -%}
+          {%- if featured_image.width >= 550 -%}{{ featured_image | image_url: width: 550 }} 550w,{%- endif -%}
+          {%- if featured_image.width >= 750 -%}{{ featured_image | image_url: width: 750 }} 750w,{%- endif -%}
+          {%- if featured_image.width >= 1100 -%}{{ featured_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+          {%- if featured_image.width >= 1500 -%}{{ featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+          {%- if featured_image.width >= 1780 -%}{{ featured_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+          {%- if featured_image.width >= 2000 -%}{{ featured_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+          {%- if featured_image.width >= 3000 -%}{{ featured_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+          {%- if featured_image.width >= 3840 -%}{{ featured_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+          {{ featured_image | image_url }} {{ featured_image.width }}w"
+        sizes="{{ desktopSize | default: '100vw' }}"
+        width="{{ featured_image.width }}"
+        height="{{ featured_image.width | divided_by: featured_image.aspect_ratio | round }}"
+        alt="{{ alt | default: featured_image.alt | escape }}"
+      >
+      <div class="card__badge {{ settings.badge_position }}">
+        {%- if current_variant.available == false -%}
+          <span class="badge badge--bottom-left color-{{ settings.sold_out_badge_color_scheme }}">
+            {{- 'products.product.sold_out' | t -}}
+          </span>
+        {%- elsif current_variant.compare_at_price > current_variant.price and current_variant.available -%}
+          <span class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}">
+            {{- 'products.product.on_sale' | t -}}
+          </span>
+        {%- endif -%}
+      </div>
+    </div>   
+  </a>
+
+  <div class="product-card__form">
+    <div class="product-card__meta center">
+      <a class="h5 product-card__title" href="{{ product.url }}">{{ product.title }}</a>
+      <div class="product-card__prices">
+        <span class="product-card__price">{{ current_variant.price | money_without_trailing_zeros }}</span>
+  
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <span class="product-card__compareprice">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <product-form class="product-form">
+      {%- form 'product', product, class: 'center', id: form_id -%}
+        <input type="hidden" name="quantity" value="1">
+        <select name="id" class="hidden">
+          {% for variant in product.variants %}
+            <option value="{{ variant.id }}" {% if variant.id == current_variant.id %}selected{% endif %}>
+              {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+  
+        {% unless product.has_only_default_variant %}
+          {%- for option in product.options_with_values -%}
+            <div class="product-card__options">
+              <label class="product-card__options--label h5">{{ option.name }}</label>
+  
+              <div class="product-card__options--swatches flex flex-wrap align-center justify-center">
+                {%- for value in option.values -%}
+                  <div class="product-card__options--swatch swatch-{{ option.name | handleize }}">
+                    <input 
+                      hidden
+                      type="radio" 
+                      id="{{ section.id }}-{{ product.id }}-{{ value }}"
+                      name="{{ option.name }}"
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}checked{% endif %}
+                    >
+                    {% if option.name == 'Color' %}
+                      <label 
+                        for="{{ section.id }}-{{ product.id }}-{{ value }}"
+                        style="background-color: {{ value | handleize }}; background-image: url({{ value | handleize | append: '.png' | file_img_url }})"
+                      >
+                      </label>
+                    {% else %}
+                      <label for="{{ section.id }}-{{ product.id }}-{{ value }}">
+                        {{ value }}
+                      </label>
+                    {% endif %}                 
+                  </div>            
+                {%- endfor -%}
+              </div>         
+            </div>
+          {%- endfor -%} 
+        {% endunless %}   
+      <div class="product-card__button center">
+          <button
+            type="submit"
+            name="add"
+            class="button button--primary"
+            aria-haspopup="dialog"
+            aria-live="polite"
+            data-sold-out-message="true"
+            {% if current_variant.available == false %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if current_variant.available -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </span>
+            <span class="sold-out-message hidden">
+              {{ 'products.product.sold_out' | t }}
+            </span>
+            <div class="loading-overlay__spinner hidden">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                role="presentation"
+                class="spinner"
+                viewBox="0 0 66 66"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
+        </div>
+      {%- endform -%}
+      
+    </product-form>
+    
+  </div>
+
+  <script type="application/json">
+    {{ product.variants | json }}
+  </script>
+</product-card>
